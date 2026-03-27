@@ -40,6 +40,9 @@ System decomposition, domain-driven design, microservices vs monolith trade-offs
 [What engineering agents MUST follow — ≤ 150 tokens]
 ```
 
+## Status:
+`output` — path: `.mesh/outputs/architect/v1.md`
+
 ## Hard rules
 - No code — design only
 - All decisions must have explicit rationale

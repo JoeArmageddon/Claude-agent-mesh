@@ -48,43 +48,89 @@ timestamp: [ISO 8601]
 
 ## Agent IDs
 
-Use kebab-case, lowercase. Examples:
+Use kebab-case, lowercase.
 
-- `conductor`
-- `quality-reviewer`  
-- `synthesizer`
-- `architect`
-- `full-stack-dev`
-- `database-designer`
-- `devops-engineer`
-- `security-analyst`
-- `performance-engineer`
-- `test-engineer`
-- `api-designer`
-- `product-strategist`
-- `ux-designer`
-- `user-researcher`
-- `content-strategist`
-- `accessibility-analyst`
-- `market-analyst`
-- `financial-modeler`
-- `pricing-strategist`
-- `competitive-analyst`
-- `data-engineer`
-- `analytics-specialist`
-- `ml-specialist`
-- `viz-designer`
-- `technical-writer`
-- `copywriter`
-- `editor`
-- `docs-specialist`
-- `contract-analyst`
-- `compliance-specialist`
-- `ip-analyst`
-- `privacy-officer`
-- `project-coordinator`
-- `risk-analyst`
-- `process-designer`
+**Core:**
+`conductor` · `quality-reviewer` · `synthesizer`
+
+**Engineering:**
+`architect` · `full-stack-dev` · `frontend-engineer` · `backend-engineer` · `mobile-engineer` · `database-designer` · `devops-engineer` · `sre` · `ml-engineer` · `infrastructure-engineer` · `security-analyst` · `performance-engineer` · `test-engineer` · `api-designer`
+
+**Product:**
+`product-strategist` · `product-manager` · `ux-designer` · `ui-designer` · `user-researcher` · `content-strategist` · `accessibility-analyst` · `localisation-specialist` · `growth-pm`
+
+**Marketing:**
+`brand-strategist` · `marketing-copywriter` · `seo-specialist` · `social-media-manager` · `email-marketing-specialist` · `paid-ads-specialist` · `pr-specialist` · `community-manager` · `video-content-creator` · `influencer-marketing-specialist`
+
+**Business:**
+`market-analyst` · `competitive-analyst` · `business-development-strategist` · `partnership-analyst` · `strategy-consultant` · `investor-relations-specialist` · `financial-modeler` · `pricing-strategist`
+
+**Data:**
+`data-engineer` · `analytics-specialist` · `ml-specialist` · `viz-designer` · `data-scientist` · `bi-analyst`
+
+**Writing:**
+`technical-writer` · `copywriter` · `editor` · `docs-specialist` · `grant-writer` · `speech-writer` · `scriptwriter`
+
+**Legal:**
+`contract-analyst` · `compliance-specialist` · `ip-analyst` · `privacy-officer` · `employment-law-specialist` · `corporate-governance-specialist`
+
+**HR:**
+`hr-business-partner` · `recruiter` · `ld-specialist` · `culture-analyst` · `compensation-analyst` · `dei-specialist`
+
+**Ops:**
+`project-coordinator` · `risk-analyst` · `process-designer` · `financial-analyst` · `accountant` · `tax-specialist` · `procurement-specialist`
+
+**Customer:**
+`customer-support-specialist` · `customer-success-manager` · `onboarding-specialist`
+
+**Sales:**
+`sales-strategist` · `sdr` · `sales-enablement-specialist` · `revops-analyst`
+
+---
+
+## Collaboration clusters
+
+Agents within the same cluster naturally share context and should coordinate when both are activated on the same run. The Conductor declares the active channels in `mission.md`.
+
+| Cluster | Members | What they share |
+|---------|---------|----------------|
+| **Build** | architect, full-stack-dev, backend-engineer, frontend-engineer, mobile-engineer, database-designer, api-designer | System design, data contracts, API shape |
+| **Platform** | devops-engineer, sre, infrastructure-engineer, ml-engineer | Infra decisions, deployment targets, SLOs |
+| **Quality** | test-engineer, performance-engineer, security-analyst | Acceptance criteria, risk surface, edge cases |
+| **Product** | product-strategist, product-manager, ux-designer, ui-designer, user-researcher, growth-pm | User needs, feature scope, success metrics |
+| **Content** | content-strategist, copywriter, marketing-copywriter, technical-writer, editor, docs-specialist | Voice, messaging, narrative consistency |
+| **Marketing** | brand-strategist, marketing-copywriter, seo-specialist, social-media-manager, email-marketing-specialist, paid-ads-specialist, pr-specialist, community-manager, video-content-creator, influencer-marketing-specialist | Campaign strategy, brand alignment, channel mix |
+| **Business** | market-analyst, competitive-analyst, business-development-strategist, partnership-analyst, strategy-consultant, investor-relations-specialist | Market context, strategic direction |
+| **Finance** | financial-modeler, financial-analyst, pricing-strategist, accountant, tax-specialist | Numbers, projections, unit economics |
+| **Data** | data-engineer, analytics-specialist, ml-specialist, viz-designer, data-scientist, bi-analyst | Schemas, metrics definitions, model outputs |
+| **Legal** | contract-analyst, compliance-specialist, ip-analyst, privacy-officer, employment-law-specialist, corporate-governance-specialist | Risk, obligations, regulatory requirements |
+| **HR** | hr-business-partner, recruiter, ld-specialist, culture-analyst, compensation-analyst, dei-specialist | People strategy, org design, culture |
+| **Ops** | project-coordinator, risk-analyst, process-designer, procurement-specialist | Timelines, dependencies, operational risk |
+| **Sales** | sales-strategist, sdr, sales-enablement-specialist, revops-analyst | Pipeline, messaging, conversion data |
+| **Customer** | customer-support-specialist, customer-success-manager, onboarding-specialist | User friction, retention signals |
+
+### Cross-cluster bridges
+
+These pairs communicate across clusters whenever both are activated:
+
+| Agent A | Agent B | Why |
+|---------|---------|-----|
+| architect | product-strategist | Requirements shape architecture decisions |
+| architect | api-designer | API contracts drive implementation |
+| ux-designer | frontend-engineer | Design handoff — specs → code |
+| ui-designer | frontend-engineer | Component specs → implementation |
+| security-analyst | compliance-specialist | Controls map to regulatory requirements |
+| security-analyst | privacy-officer | Data handling overlaps security and privacy |
+| compliance-specialist | privacy-officer | GDPR/regulatory scope overlaps |
+| data-scientist | ml-specialist | Model research → productionised approach |
+| ml-specialist | ml-engineer | Algorithm → deployed service |
+| analytics-specialist | bi-analyst | Metrics definitions must be consistent |
+| financial-modeler | pricing-strategist | Revenue model informs pricing tiers |
+| product-manager | project-coordinator | Feature scope → delivery timeline |
+| content-strategist | copywriter | Strategy → execution |
+| content-strategist | marketing-copywriter | Brand voice consistency |
+| growth-pm | analytics-specialist | Growth experiments need metric definitions |
+| sales-strategist | revops-analyst | Strategy needs pipeline visibility |
 
 ---
 
@@ -92,12 +138,13 @@ Use kebab-case, lowercase. Examples:
 
 When an agent is spawned, it must:
 
-1. Read `.mesh/mission.md` — understand the overall task
-2. Read its own `brief` message from the Conductor at `.mesh/messages/*-conductor-[my-id]-brief.md`
-3. Read any `request` messages addressed to it
-4. Produce its output
-5. Post an `output` message announcing the deliverable
-6. Then wait — do not proceed further until a `review`, `approve`, or `reject` message arrives
+1. Read `.mesh/mission.md` — understand the overall task and the **Communication channels** section which lists who you coordinate with
+2. Read its own `brief` message from the Conductor at `.mesh/messages/*-conductor-[my-id]-brief.md` — check the **Coordinate with** list
+3. Send `request` messages to any agents listed as coordinators **before** producing output — ask for the specific input you need from them
+4. Read any incoming `request` messages addressed to you and respond promptly with `response` messages
+5. After receiving responses from coordinators (or after a reasonable wait if none has replied), produce your output
+6. Post an `output` message announcing the deliverable
+7. Then wait — do not proceed further until a `review`, `approve`, or `reject` message arrives
 
 When a `reject` arrives:
 1. Read the rejection feedback carefully

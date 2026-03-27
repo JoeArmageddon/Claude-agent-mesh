@@ -52,6 +52,32 @@ Use this signal table:
 **Minimum team:** 2 agents (never activate just one — the whole point is collaboration)
 **Maximum team:** 8 agents (more than 8 creates coordination overhead that degrades quality)
 
+### Collaboration map
+
+When two or more selected agents share a cluster or a cross-cluster bridge, they must coordinate before finalising their outputs. Use this table when writing briefs (Step 4) and when declaring channels in mission.md (Step 3).
+
+**Clusters — agents within the same cluster coordinate automatically:**
+
+| Cluster | Members |
+|---------|---------|
+| Build | architect · full-stack-dev · backend-engineer · frontend-engineer · mobile-engineer · database-designer · api-designer |
+| Platform | devops-engineer · sre · infrastructure-engineer · ml-engineer |
+| Quality | test-engineer · performance-engineer · security-analyst |
+| Product | product-strategist · product-manager · ux-designer · ui-designer · user-researcher · growth-pm |
+| Content | content-strategist · copywriter · marketing-copywriter · technical-writer · editor · docs-specialist |
+| Marketing | brand-strategist · marketing-copywriter · seo-specialist · social-media-manager · email-marketing-specialist · paid-ads-specialist · pr-specialist · community-manager · video-content-creator · influencer-marketing-specialist |
+| Business | market-analyst · competitive-analyst · business-development-strategist · partnership-analyst · strategy-consultant · investor-relations-specialist |
+| Finance | financial-modeler · financial-analyst · pricing-strategist · accountant · tax-specialist |
+| Data | data-engineer · analytics-specialist · ml-specialist · viz-designer · data-scientist · bi-analyst |
+| Legal | contract-analyst · compliance-specialist · ip-analyst · privacy-officer · employment-law-specialist · corporate-governance-specialist |
+| HR | hr-business-partner · recruiter · ld-specialist · culture-analyst · compensation-analyst · dei-specialist |
+| Ops | project-coordinator · risk-analyst · process-designer · procurement-specialist |
+| Sales | sales-strategist · sdr · sales-enablement-specialist · revops-analyst |
+| Customer | customer-support-specialist · customer-success-manager · onboarding-specialist |
+
+**Cross-cluster bridges — coordinate when both are on the team:**
+architect↔product-strategist · architect↔api-designer · ux-designer↔frontend-engineer · ui-designer↔frontend-engineer · security-analyst↔compliance-specialist · security-analyst↔privacy-officer · compliance-specialist↔privacy-officer · data-scientist↔ml-specialist · ml-specialist↔ml-engineer · analytics-specialist↔bi-analyst · financial-modeler↔pricing-strategist · product-manager↔project-coordinator · content-strategist↔copywriter · content-strategist↔marketing-copywriter · growth-pm↔analytics-specialist · sales-strategist↔revops-analyst
+
 ### Step 2: Create the workspace
 
 ```bash
@@ -86,6 +112,13 @@ Write `.mesh/mission.md` with this exact structure:
 [Which agents need to wait for / coordinate with which others]
 - [agent-a] needs [agent-b]'s output before finalising
 
+## Communication channels
+[Only list pairs where BOTH agents are on this team. Derived from the collaboration map above.]
+- [agent-a] ↔ [agent-b]: [what they should exchange]
+- [agent-c] ↔ [agent-d]: [what they should exchange]
+
+Agents use `request` / `response` messages at `.mesh/messages/` to exchange information. They do not wait for approval — they initiate contact as soon as they need input.
+
 ## Out of scope
 [What agents must not produce or do]
 ```
@@ -93,6 +126,8 @@ Write `.mesh/mission.md` with this exact structure:
 ### Step 4: Write agent briefs
 
 For each activated agent, write a brief at `.mesh/messages/[timestamp]-conductor-[agent-id]-brief.md`.
+
+**How to populate "Coordinate with":** Cross-reference this agent against the collaboration map above. List every team member that shares a cluster with this agent OR has a cross-cluster bridge with this agent. For each, note *what* to exchange — schema details, design specs, metric definitions, etc. If an agent you'd normally coordinate with is not on this team, omit them.
 
 Brief format:
 ```markdown
@@ -113,7 +148,12 @@ timestamp: [ISO 8601]
 [Only the constraints relevant to this agent's work]
 
 ## Coordinate with
-[Which other agents you should request input from before finalising, if any]
+[Derived from the collaboration map — only list agents who are on this team]
+- [agent-id]: request [specific input] before finalising your output
+- [agent-id]: share [specific output] so they can use it
+
+Use `request` messages at `.mesh/messages/[timestamp]-[your-id]-[their-id]-request.md`.
+Read any `response` messages addressed to you before producing v1.
 
 ## Do not
 [What is explicitly outside your scope]

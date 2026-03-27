@@ -119,24 +119,103 @@ timestamp: [ISO 8601]
 [What is explicitly outside your scope]
 ```
 
-### Step 5: Activate agents and Quality Reviewer
+### Step 5: Activate agents by skill — all others stay dormant
 
-Always activate the Quality Reviewer first — it must be ready when agents post outputs.
+Every agent has a dedicated skill command. You MUST activate each agent by invoking its skill, not by any other method. Agents that are not on the team are never invoked and never load.
 
-Spawn each agent via the Task tool:
-```
-Task: You are the [AGENT ROLE] in claude-agent-mesh.
+**Agent → Skill mapping (complete):**
 
-Read these files in order:
-1. .mesh/mission.md — overall context
-2. .mesh/messages/*-conductor-[your-id]-brief.md — your specific brief
-3. protocol/PROTOCOL.md — message format (read once, follow always)
+| Agent | Skill command |
+|-------|--------------|
+| Quality Reviewer | `/quality-review` |
+| Synthesizer | `/synthesize` |
+| Architect | `/architect` |
+| Full-Stack Developer | `/full-stack` |
+| Frontend Engineer | `/frontend` |
+| Backend Engineer | `/backend` |
+| Mobile Engineer | `/mobile` |
+| Database Designer | `/database` |
+| DevOps Engineer | `/devops` |
+| Site Reliability Engineer | `/sre` |
+| ML Engineer | `/ml-engineer` |
+| Infrastructure Engineer | `/infra` |
+| Security Analyst | `/security` |
+| Performance Engineer | `/performance` |
+| Test Engineer | `/test-engineer` |
+| API Designer | `/api-designer` |
+| Product Strategist | `/product-strategist` |
+| Product Manager | `/product-manager` |
+| UX Designer | `/ux` |
+| UI Designer | `/ui` |
+| User Researcher | `/user-researcher` |
+| Content Strategist | `/content-strategist` |
+| Accessibility Analyst | `/accessibility` |
+| Localisation Specialist | `/localisation` |
+| Growth PM | `/growth-pm` |
+| Brand Strategist | `/brand` |
+| Marketing Copywriter | `/marketing-copywriter` |
+| SEO Specialist | `/seo` |
+| Social Media Manager | `/social-media` |
+| Email Marketing Specialist | `/email-marketing` |
+| Paid Ads Specialist | `/paid-ads` |
+| PR Specialist | `/pr` |
+| Community Manager | `/community` |
+| Video Content Creator | `/video` |
+| Influencer Marketing Specialist | `/influencer` |
+| Market Analyst | `/market-analyst` |
+| Financial Modeler | `/financial-model` |
+| Pricing Strategist | `/pricing` |
+| Competitive Analyst | `/competitive` |
+| Business Development Strategist | `/biz-dev` |
+| Partnership Analyst | `/partnerships` |
+| Strategy Consultant | `/strategy` |
+| Investor Relations Specialist | `/investor-relations` |
+| Data Engineer | `/data-engineer` |
+| Analytics Specialist | `/analytics` |
+| ML Specialist | `/ml-specialist` |
+| Visualisation Designer | `/dataviz` |
+| Data Scientist | `/data-scientist` |
+| BI Analyst | `/bi` |
+| Technical Writer | `/tech-writer` |
+| Copywriter | `/copywriter` |
+| Editor | `/editor` |
+| Docs Specialist | `/docs` |
+| Grant Writer | `/grant-writer` |
+| Speech Writer | `/speech-writer` |
+| Scriptwriter | `/scriptwriter` |
+| Contract Analyst | `/contracts` |
+| Compliance Specialist | `/compliance` |
+| IP Analyst | `/ip` |
+| Privacy Officer | `/privacy` |
+| Employment Law Specialist | `/employment-law` |
+| Corporate Governance Specialist | `/governance` |
+| HR Business Partner | `/hrbp` |
+| Recruiter | `/recruiter` |
+| L&D Specialist | `/learning-dev` |
+| Culture Analyst | `/culture` |
+| Compensation Analyst | `/compensation` |
+| DEI Specialist | `/dei` |
+| Project Coordinator | `/project` |
+| Risk Analyst | `/risk` |
+| Process Designer | `/process` |
+| Financial Analyst | `/financial-analyst` |
+| Accountant | `/accountant` |
+| Tax Specialist | `/tax` |
+| Customer Support Specialist | `/support` |
+| Customer Success Manager | `/csm` |
+| Onboarding Specialist | `/onboarding` |
+| Sales Strategist | `/sales` |
+| SDR | `/sdr` |
+| Sales Enablement Specialist | `/sales-enablement` |
+| RevOps Analyst | `/revops` |
+| Procurement Specialist | `/procurement` |
 
-Then follow your agent's protocol from agents/[domain]/[your-role]/AGENT.md
+**Activation sequence:**
 
-Your message bus is at .mesh/messages/
-Your output goes to .mesh/outputs/[your-id]/v1.md
-```
+1. Always activate Quality Reviewer first: invoke `/quality-review` with context: "You are on standby for this mesh run. Score each agent output as it arrives using mission at .mesh/mission.md"
+2. For each agent on the team (in dependency order — agents whose output others depend on go first): invoke their skill command with their brief as the argument. Example: `/architect Read .mesh/mission.md and .mesh/messages/*-conductor-architect-brief.md then produce your output to .mesh/outputs/architect/v1.md`
+3. Agents NOT on the team are never mentioned, never invoked, never loaded — they remain dormant.
+4. After all agents complete, activate Synthesizer: invoke `/synthesize` with: "Merge all approved outputs from .mesh/outputs/*/ into .mesh/final/output.md"
 
 ### Step 6: Monitor and intervene
 

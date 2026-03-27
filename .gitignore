@@ -1,0 +1,24 @@
+# Mesh runtime workspace (ephemeral — created per run, deleted or archived after)
+.mesh/
+.mesh-archive/
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local

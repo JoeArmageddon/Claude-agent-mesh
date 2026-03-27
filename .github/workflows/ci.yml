@@ -1,0 +1,24 @@
+name: CI — Validate agents and protocol
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate AGENT.md files
+        run: python .github/scripts/validate_agents.py
+
+      - name: Validate PROTOCOL.md message types
+        run: python .github/scripts/validate_protocol.py

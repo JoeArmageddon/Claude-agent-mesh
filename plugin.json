@@ -1,0 +1,14 @@
+{
+  "name": "claude-agent-mesh",
+  "version": "1.0.0",
+  "description": "Dynamic multi-agent mesh for Claude Code. Assembles a specialist team from any task, runs a quality scoring loop, and delivers a synthesized output. Standalone — no dependency on other frameworks.",
+  "license": "MIT",
+  "keywords": ["multi-agent", "mesh", "ai-agents", "quality-control", "workflow"],
+  "commands": [
+    { "name": "mesh", "path": ".claude/commands/mesh.md", "scope": "project" },
+    { "name": "mesh-status", "path": ".claude/commands/mesh-status.md", "scope": "project" },
+    { "name": "mesh-halt", "path": ".claude/commands/mesh-halt.md", "scope": "project" },
+    { "name": "mesh-roles", "path": ".claude/commands/mesh-roles.md", "scope": "project" },
+    { "name": "mesh-review", "path": ".claude/commands/mesh-review.md", "scope": "project" }
+  ]
+}

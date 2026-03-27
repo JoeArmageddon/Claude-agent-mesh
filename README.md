@@ -350,30 +350,55 @@ Returns the full 5-dimension score breakdown and pass/fail verdict.
 | Quality Reviewer | Scores every output 1–10 on 5 dimensions, rejects below 8.0 with specific feedback |
 | Synthesizer | Merges all approved outputs into a single coherent document in one voice |
 
-### Engineering
+### Engineering (14 agents)
 
 | Agent | Produces |
 |-------|---------|
 | Architect | System design, component breakdown, data flow, integration contracts |
 | Full-Stack Developer | Implementation code across frontend and backend |
+| Frontend Engineer | Component architecture, state management, Web Vitals, accessibility |
+| Backend Engineer | Service layer, business logic, input validation, API implementation |
+| Mobile Engineer | iOS/Android app architecture, offline-first design, platform conventions |
 | Database Designer | Schema design, indexes, migration plans, query optimisation |
 | DevOps Engineer | CI/CD pipelines, infrastructure-as-code, deployment strategy |
+| Site Reliability Engineer | SLOs, observability stack, alerting strategy, incident runbooks |
+| ML Engineer | Training pipelines, model serving, MLOps, drift monitoring |
+| Infrastructure Engineer | Cloud architecture, networking, IAM, cost estimate |
 | Security Analyst | Threat model, vulnerability assessment, remediation recommendations |
 | Performance Engineer | Load test plan, bottleneck analysis, optimisation strategy |
 | Test Engineer | Test strategy, test cases, coverage plan |
 | API Designer | OpenAPI 3.0 spec, endpoint design, auth requirements, error formats |
 
-### Product
+### Product (9 agents)
 
 | Agent | Produces |
 |-------|---------|
 | Product Strategist | Feature spec, user stories with acceptance criteria, success metrics |
+| Product Manager | Prioritised backlog, milestones, dependency map, definition of done |
 | UX Designer | User flows, screen outlines, interaction patterns, navigation model |
+| UI Designer | Design tokens, component states, visual hierarchy, handoff spec |
 | User Researcher | Personas, jobs-to-be-done, behavioural insights, research plan |
 | Content Strategist | Content architecture, messaging hierarchy, tone guidelines |
 | Accessibility Analyst | WCAG 2.1 AA checklist, ARIA patterns, keyboard/screen reader spec |
+| Localisation Specialist | i18n architecture, locale support plan, translation workflow |
+| Growth PM | North star metric, funnel analysis, experiment roadmap, retention strategy |
 
-### Business
+### Marketing (10 agents)
+
+| Agent | Produces |
+|-------|---------|
+| Brand Strategist | Positioning, tone of voice, visual identity system, brand architecture |
+| Copywriter | Campaign messaging, landing page copy, ad copy, CTA variants |
+| SEO Specialist | Keyword strategy, content architecture, technical SEO requirements |
+| Social Media Manager | Platform strategy, content calendar, engagement model, community playbook |
+| Email Marketing Specialist | Lifecycle sequences, deliverability setup, segmentation, compliance |
+| Paid Ads Specialist | Channel mix, campaign structure, audience strategy, conversion tracking |
+| PR Specialist | Media strategy, press materials, launch plan, crisis preparedness |
+| Community Manager | Platform strategy, member journey, engagement programmes, moderation framework |
+| Video Content Creator | Video strategy, scripts, production briefs, distribution plan |
+| Influencer Marketing Specialist | Creator strategy, campaign brief, deal structure, FTC compliance |
+
+### Business & Strategy (8 agents)
 
 | Agent | Produces |
 |-------|---------|
@@ -381,8 +406,12 @@ Returns the full 5-dimension score breakdown and pass/fail verdict.
 | Financial Modeler | Revenue projections, unit economics, cost model, 3-scenario analysis |
 | Pricing Strategist | Tier structure, price anchoring, willingness-to-pay analysis |
 | Competitive Analyst | Named competitor profiles, feature matrix, positioning gaps |
+| Business Development Strategist | Partnership thesis, opportunity matrix, deal structure template |
+| Partnership Analyst | Deal evaluation, financial model, due diligence checklist, partner KPIs |
+| Strategy Consultant | Strategic options analysis, recommendation with rationale, implementation sequence |
+| Investor Relations Specialist | Investor narrative, pitch deck outline, due diligence data room, anticipated Q&A |
 
-### Data
+### Data & Analytics (6 agents)
 
 | Agent | Produces |
 |-------|---------|
@@ -390,8 +419,10 @@ Returns the full 5-dimension score breakdown and pass/fail verdict.
 | Analytics Specialist | Metrics framework, KPI definitions, tracking plan, dashboard wireframe |
 | ML Specialist | Model selection, feature engineering, evaluation framework, MLOps design |
 | Visualisation Designer | Chart specifications, dashboard layout, colour encoding, accessibility |
+| Data Scientist | Statistical analysis, experiment design, predictive model plan, limitations |
+| BI Analyst | Dashboard inventory, semantic layer, metric definitions, access control |
 
-### Writing
+### Writing & Docs (6 agents)
 
 | Agent | Produces |
 |-------|---------|
@@ -399,8 +430,11 @@ Returns the full 5-dimension score breakdown and pass/fail verdict.
 | Copywriter | Headlines, CTAs, landing page copy, email content |
 | Editor | Tracked edits to another agent's written output with reasons |
 | Docs Specialist | User guides, onboarding docs, help articles, release notes |
+| Grant Writer | Funder analysis, proposal structure, logic model, evaluation plan |
+| Speech Writer | Central idea, speech structure, full script with delivery notes |
+| Scriptwriter | Platform-specific video/audio scripts with visual direction |
 
-### Legal
+### Legal & Compliance (6 agents)
 
 | Agent | Produces |
 |-------|---------|
@@ -408,14 +442,38 @@ Returns the full 5-dimension score breakdown and pass/fail verdict.
 | Compliance Specialist | Regulatory checklist, gap analysis, prioritised remediation steps |
 | IP Analyst | Freedom-to-operate assessment, open source licence analysis, IP protection strategy |
 | Privacy Officer | Privacy impact assessment, data inventory, GDPR/CCPA requirements, consent design |
+| Employment Law Specialist | Workforce compliance findings, classification analysis, policy gaps |
+| Corporate Governance Specialist | Board structure assessment, compliance gaps, corporate records review |
 
-### Operations
+### HR & People (6 agents)
+
+| Agent | Produces |
+|-------|---------|
+| HR Business Partner | Workforce plan, org design, people programme priorities, performance framework |
+| Recruiter | Role success profile, sourcing strategy, interview scorecards, offer strategy |
+| L&D Specialist | Capability gap analysis, learning interventions, career framework, onboarding design |
+| Culture Analyst | Culture assessment, engagement data, root causes, culture-change interventions |
+| Compensation Analyst | Pay band structure, benchmarking sources, equity programme, pay equity findings |
+| DEI Specialist | Representation baseline, systemic interventions, measurement framework |
+
+### Operations, Finance & Sales (14 agents)
 
 | Agent | Produces |
 |-------|---------|
 | Project Coordinator | Project plan, milestones, dependencies, RACI matrix |
 | Risk Analyst | Risk register with likelihood × impact scoring, mitigations, early warning indicators |
 | Process Designer | Process flows, SOPs, decision trees, handoff definitions |
+| Financial Analyst | Variance analysis, unit economics, cash position, forecast update |
+| Accountant | Chart of accounts, month-end close process, internal controls, compliance calendar |
+| Tax Specialist | Tax obligations by type, exposure analysis, planning opportunities, compliance calendar |
+| Customer Support Specialist | Support model, SLA framework, escalation tiers, knowledge base structure |
+| Customer Success Manager | Coverage model, health score, playbooks, success plan template |
+| Onboarding Specialist | Activation milestone, onboarding funnel, in-app flow, email sequence |
+| Sales Strategist | ICP definition, sales process, quota design, funnel model |
+| SDR | Prospecting target profile, outreach sequences, email copy, qualification criteria |
+| Sales Enablement Specialist | Onboarding programme, content library, battlecards, pitch certification |
+| RevOps Analyst | GTM systems architecture, CRM data model, pipeline process, attribution model |
+| Procurement Specialist | Spend analysis, sourcing strategy, RFP framework, negotiation positions |
 
 ---
 
